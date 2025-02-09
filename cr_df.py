@@ -1,11 +1,9 @@
 import sqlite3
 
 # Connect to SQLite database (creates the file if it doesn't exist)
-conn = sqlite3.connect("database.db")
+conn = sqlite3.connect("data.db")
 cursor = conn.cursor()
 
-# Enable foreign keys
-cursor.execute("PRAGMA foreign_keys = ON;")
 
 # Create reservations table
 cursor.execute("""
@@ -59,6 +57,7 @@ CREATE TABLE IF NOT EXISTS salaries (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     employ TEXT NOT NULL,
     em_phone INTEGER NOT NULL
+    wage INTEGER NOT NULL      
 );
 """)
 
