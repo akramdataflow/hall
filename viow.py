@@ -1,5 +1,5 @@
 import sys 
-from PySide6.QtWidgets import QSpinBox, QMainWindow, QPushButton, QGridLayout, QFrame, QVBoxLayout, QLabel , QLineEdit , QSizePolicy ,QTableWidget ,QHeaderView , QTableWidgetItem ,  QDateEdit 
+from PySide6.QtWidgets import QSpinBox, QMainWindow, QPushButton, QGridLayout, QFrame, QVBoxLayout, QLabel , QLineEdit , QSizePolicy ,QTableWidget ,QHeaderView , QTableWidgetItem ,  QDateEdit , QCheckBox
 from PySide6.QtGui import QIcon, QFont 
 from PySide6.QtCore import Qt, QSize , QDate
 
@@ -1038,9 +1038,9 @@ class Services(QMainWindow):
             # تعبئة البيانات في الجدول
             for row in range(row_count):
                 self.table.setItem(row, 4, QTableWidgetItem(str(data_tabel[0][row])))  
-                self.table.setItem(row, 0, QTableWidgetItem(data_tabel[1][row]))  # إدخال الاسم
-                self.table.setItem(row, 1, QTableWidgetItem(data_tabel[2][row]))
-                self.table.setItem(row, 2, QTableWidgetItem(data_tabel[3][row]))   # إدخال اسم الشركة
+                self.table.setItem(row, 0, QTableWidgetItem(str(data_tabel[1][row])))  # إدخال الاسم
+                self.table.setItem(row, 1, QTableWidgetItem(str(data_tabel[2][row])))
+                self.table.setItem(row, 2, QTableWidgetItem(str(data_tabel[3][row])))   # إدخال اسم الشركة
                 self.table.setItem(row, 3, QTableWidgetItem(str(data_tabel[4][row])))  # إدخال النوع
               
                
@@ -1111,7 +1111,7 @@ class Services(QMainWindow):
         ''')
         save_frame_layout.addWidget(label_history, 0, 1)
 
-        self.food = QLineEdit()
+        self.food = QCheckBox()
         self.food.setStyleSheet("""
             border-radius: 4px;
             background-color: #fff;
@@ -1133,7 +1133,7 @@ class Services(QMainWindow):
         ''')
         save_frame_layout.addWidget(label_company, 1, 1)
 
-        self.refreshments = QLineEdit()
+        self.refreshments = QCheckBox()
         self.refreshments.setStyleSheet("""
             border-radius: 4px;
             background-color: #fff;
@@ -1156,7 +1156,7 @@ class Services(QMainWindow):
         ''')
         save_frame_layout.addWidget(label_history, 2, 1)
 
-        self.photography = QLineEdit()
+        self.photography = QCheckBox()
         self.photography.setStyleSheet("""
             border-radius: 4px;
             background-color: #fff;
@@ -1268,9 +1268,9 @@ class Services(QMainWindow):
            
     def send_data_to_controller(self):
         # الحصول على البيانات من الواجهة
-        food = self.food.text()
-        refreshments = self.refreshments.text()
-        photography = self.photography.text()
+        food = self.food.isChecked()
+        refreshments = self.refreshments.isChecked()
+        photography = self.photography.isChecked()
         others = self.others.text()
         
 
@@ -1294,11 +1294,11 @@ class Services(QMainWindow):
 
             
             for row in range(row_count):
-                self.table.setItem(row, 4, QTableWidgetItem(str(data_table[0][row])))  # إدخال الاسم
-                self.table.setItem(row, 0, QTableWidgetItem(data_table[1][row]))  # إدخال الاسم
-                self.table.setItem(row, 1, QTableWidgetItem(data_table[2][row]))  # إدخال النوع
-                self.table.setItem(row, 2, QTableWidgetItem(str(data_table[3][row])))  # إدخال العدد
-                self.table.setItem(row, 3, QTableWidgetItem(str(data_table[4][row])))
+                self.table.setItem(row, 4, QTableWidgetItem(str(data_table[0][row])))  
+                self.table.setItem(row, 0, QTableWidgetItem(str(data_table[1][row])))  # إدخال الاسم
+                self.table.setItem(row, 1, QTableWidgetItem(str(data_table[2][row])))
+                self.table.setItem(row, 2, QTableWidgetItem(str(data_table[3][row])))   # إدخال اسم الشركة
+                self.table.setItem(row, 3, QTableWidgetItem(str(data_table[4][row])))  # إدخال النوع
                
 
                                       
